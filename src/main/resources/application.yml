@@ -1,0 +1,17 @@
+spring:
+  application: # 项目应用名称
+    name: springboot-learn
+  profiles: # 加载启动环境
+    active: dev
+
+  # ================ 公共配置(优先级低于application-xxx.yml)  ================
+
+  mvc: # mvc配置
+    static-path-pattern: /static/**
+    format: # 日期映射格式
+      date-time: yyyy-MM-dd HH:mm:ss
+
+  servlet: # servlet 配置
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
