@@ -1,6 +1,7 @@
 package com.example.springbootlearn.entity.quartz;
 
-import com.example.springbootlearn.entity.userDetail.UserInfoBean;
+import com.example.springbootlearn.entity.assist.AssistBean;
+import com.example.springbootlearn.entity.user.UserInfoBean;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 @ApiModel("Quartz 定时任务")
-public class QuartzTaskJobBean {
+public class QuartzTaskJobBean extends AssistBean {
 
     /**
      * 任务id

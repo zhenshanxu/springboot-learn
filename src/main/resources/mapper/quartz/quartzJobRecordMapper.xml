@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootlearn.dao.quartz.QuartzJobRecordDao">
+
+    <!-- 添加定时任务执行记录 -->
+    <insert id="addExecuteRecord" keyProperty="id"
+            parameterType="com.example.springbootlearn.entity.quartz.QuartzJobRecordBean" useGeneratedKeys="true">
+        INSERT INTO
+        tb_quartz_job_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jobId !=null and jobId !=0 ">job_id,</if>
+            <if test="jonExecute !=null and jonExecute !='' ">jon_execute,</if>
+            <if test="executeStatus !=null and executeStatus !='' ">execute_status,</if>
+            <if test="executeAbnormal !=null and executeAbnormal !='' ">execute_abnormal</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="jobId !=null and jobId !=0 ">#{jobId},</if>
+            <if test="jonExecute !=null and jonExecute !='' ">#{jonExecute},</if>
+            <if test="executeStatus !=null and executeStatus !='' ">#{executeStatus},</if>
+            <if test="executeAbnormal !=null and executeAbnormal !='' ">#{executeAbnormal}</if>
+        </trim>
+    </insert>
+
+    <!-- 修改定时任务执行记录 -->
+    <update id="updateExecuteRecord">
+        UPDATE
+        tb_quartz_job_record
+        <set>
+            <if test="jobId !=null and jobId !=0 ">job_id = #{jobId},</if>
+            <if test="jonExecute !=null and jonExecute !='' ">jon_execute = #{jonExecute},</if>
+            <if test="executeStatus !=null and executeStatus !='' ">execute_status = #{executeStatus},</if>
+            <if test="executeAbnormal !=null and executeAbnormal !='' ">execute_abnormal = #{executeAbnormal}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询定时任务执行记录 -->
+    <select id="queryExecuteRecord" resultType="com.example.springbootlearn.entity.quartz.QuartzJobRecordBean">
+        select * from tb_quartz_job_record
+        <where>
+            1=1
+            <if test="jobId !=null and jobId !=0 "> and job_id = #{jobId},</if>
+            <if test="executeStatus !=null and executeStatus !='' ">and execute_status = #{executeStatus}</if>
+        </where>
+    </select>
+
+    <!-- 根据定时任务id查询定时任务执行记录 -->
+    <select id="queryExecuteRecordByJobIs" resultType="com.example.springbootlearn.entity.quartz.QuartzJobRecordBean">
+        SELECT * FROM tb_quartz_job_record
+        <where>
+            1=1 AND id IN
+            <foreach collection="jobIds" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>

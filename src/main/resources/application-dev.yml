@@ -23,3 +23,27 @@ spring:
           min-idle: 0
           max-active: 8
       timeout: 5000ms
+
+  mail: # 邮箱配置
+    host: smtp.163.com # smtp.163.com
+    username: xuzhenshanvip@163.com # 163邮箱地址
+    password: CVAZCOJUUDPYIMEG # 注意这里不是邮箱密码，而是SMTP授权密码
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+        imap:
+          ssl:
+            socketFactory:
+              fallback: false
+
+
+
+  upload-config: # 文件保存的根目录，所有文件都保存在整个文件夹下
+    root-folder: E:\Test File
+
+  user-defined: # 项目自定义配置
+    swagger-enable: true # swagger 的 enable 配置
+    md5-salt: password_salt  # 密码的盐值

@@ -1,4 +1,4 @@
-package com.example.springbootlearn.entity.userDetail;
+package com.example.springbootlearn.entity.user;
 
 import com.example.springbootlearn.entity.assist.AssistBean;
 import io.swagger.annotations.ApiModel;

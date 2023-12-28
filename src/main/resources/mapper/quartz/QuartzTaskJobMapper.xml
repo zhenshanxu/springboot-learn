@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootlearn.dao.quartz.QuartzTaskJobDao">
+
+    <!-- 添加定时任务 -->
+    <insert id="addJob" keyProperty="id"
+            parameterType="com.example.springbootlearn.entity.quartz.QuartzTaskJobBean" useGeneratedKeys="true">
+        INSERT INTO
+        tb_quartz_task_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="jobName !=null and jobName !=''">job_name,</if>
+            <if test="jobClass !=null and jobClass !='' ">job_class,</if>
+            <if test="status !=null and status !=0 ">status,</if>
+            <if test="description !=null and description !='' ">description,</if>
+            <if test="cronExpression !=null and cronExpression !='' ">cron_expression,</if>
+            <if test="creator !=null and creator !=0 ">creator,</if>
+            <if test="alert !=null and alert !='' ">alert,</if>
+            <if test="tmCreate !=null and tmCreate !='' ">tm_create,</if>
+            <if test="tmModify !=null and tmModify !='' ">tm_modify</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="jobName !=null and jobName !=''">#{jobName},</if>
+            <if test="jobClass !=null and jobClass !='' ">#{jobClass},</if>
+            <if test="status !=null and status !=0 ">#{status},</if>
+            <if test="description !=null and description !='' ">#{description},</if>
+            <if test="cronExpression !=null and cronExpression !='' ">#{cronExpression},</if>
+            <if test="creator !=null and creator !=0 ">#{creator},</if>
+            <if test="alert !=null and alert !='' ">#{alert},</if>
+            <if test="tmCreate !=null and tmCreate !='' ">#{tmCreate},</if>
+            <if test="tmModify !=null and tmModify !='' ">#{tmModify}</if>
+        </trim>
+    </insert>
+
+    <!-- 修改定时任务 -->
+    <update id="updateJob" parameterType="com.example.springbootlearn.entity.quartz.QuartzTaskJobBean">
+        UPDATE
+        tb_quartz_task_job
+        <set>
+            <if test="jobName !=null and jobName !=''">job_name = #{jobName},</if>
+            <if test="jobClass !=null and jobClass">job_class = #{jobClass},</if>
+            <if test="status !=null ">status = #{status},</if>
+            <if test="description !=null and description !='' ">description = #{description},</if>
+            <if test="cronExpression !=null and cronExpression !='' ">cron_expression = #{cronExpression},</if>
+            <if test="alert !=null and alert !='' ">alert = #{alert},</if>
+            <if test="isDeleted !=null and isDeleted !=0 ">is_deleted = #{isDeleted},</if>
+            <if test="tmModify !=null and tmModify !='' ">tm_modify = #{tmModify}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询定时任务 -->
+    <select id="queryJob" resultType="com.example.springbootlearn.entity.quartz.QuartzTaskJobBean">
+        SELECT * FROM tb_quartz_task_job
+        <where>
+            1=1 and is_deleted = 1
+            <if test="id !=null and id !=0 ">and id = #{id}</if>
+            <if test="jobName !=null and jobName !=''">and job_name = #{jobName}</if>
+            <if test="jobClass !=null and jobClass">and job_class = #{jobClass}</if>
+            <if test="status !=null and status !=0 ">and status = #{status}</if>
+            <if test="description !=null and description !='' ">and description = #{description}</if>
+            <if test="cronExpression !=null and cronExpression !='' ">and cron_expression = #{cronExpression}</if>
+        </where>
+        ORDER BY tm_create DESC
+        <if test="pageSize != 0 and pageSize != null">
+            LIMIT
+            #{pageSize}
+        </if>
+        <if test="page != 0 and page != null">
+            OFFSET
+            #{page}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootlearn.dao.user.UserInfoDao">
+
+    <!--插入新用户-->
+    <insert id="insertUserInfo" keyProperty="id" parameterType="com.example.springbootlearn.entity.user.UserInfoBean"
+            useGeneratedKeys="true">
+        INSERT INTO
+        sys_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name !=null and name !='' ">`name`,</if>
+            <if test="phone !=null and phone!='' ">phone,</if>
+            <if test="email !=null and email !='' ">email,</if>
+            <if test="password !=null and password !='' ">password,</if>
+            <if test="userAvatar !=null and userAvatar !='' ">user_avatar,</if>
+            <if test="creator !=null and creator !=0 ">creator,</if>
+            <if test="createTime !=null and createTime !='' ">create_time,</if>
+            <if test="mender !=null and mender !=0 ">mender,</if>
+            <if test="modifyTime !=null and modifyTime !='' ">modify_time</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="name !=null and name !=0 ">#{name},</if>
+            <if test="phone !=null and phone!='' ">#{phone},</if>
+            <if test="email !=null and email !='' ">#{email},</if>
+            <if test="password !=null and password !='' ">#{password},</if>
+            <if test="userAvatar !=null and userAvatar !='' ">#{userAvatar},</if>
+            <if test="creator !=null and creator !=0 ">#{creator},</if>
+            <if test="createTime !=null and createTime !='' ">#{createTime},</if>
+            <if test="mender !=null and mender !=0 ">#{mender},</if>
+            <if test="modifyTime !=null and modifyTime !='' ">#{modifyTime}</if>
+        </trim>
+    </insert>
+
+    <!--更新修改用户-->
+    <update id="updateUserInfo" parameterType="com.example.springbootlearn.entity.user.UserInfoBean">
+        UPDATE
+        sys_user_info
+        <set>
+            <if test="name !=null and name !='' ">`name`= #{name},</if>
+            <if test="phone !=null and phone!='' ">phone = #{phone},</if>
+            <if test="email !=null and email !='' ">email = #{email},</if>
+            <if test="password !=null and password !='' ">password = #{password},</if>
+            <if test="userAvatar !=null and userAvatar !='' ">user_avatar = #{userAvatar},</if>
+            <if test="isDelete !=null and isDelete !=0 ">is_delete = #{isDelete},</if>
+            <if test="mender !=null and mender !=0 ">mender = #{mender},</if>
+            <if test="modifyTime !=null and modifyTime !='' ">modify_time= #{modifyTime}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--获取用户列表-->
+    <select id="queryUserInfoList" resultType="com.example.springbootlearn.entity.user.UserInfoBean">
+        SELECT * FROM sys_user_info
+        <where>
+            is_delete = 1
+            <if test="id !=null and id !=0 ">AND id = #{id}</if>
+            <if test="phone !=null and phone!='' ">AND phone = #{phone}</if>
+            <if test="email !=null and email !='' ">AND email = #{email}</if>
+        </where>
+        ORDER BY create_time DESC
+        <if test="pageSize != 0 and pageSize != null">
+            LIMIT
+            #{pageSize}
+        </if>
+        <if test="page != 0 and page != null">
+            OFFSET
+            #{page}
+        </if>
+    </select>
+
+    <select id="queryUserByIds" resultType="com.example.springbootlearn.entity.user.UserInfoBean">
+        SELECT * FROM sys_user_info
+        WHERE id IN
+        <foreach collection="ids" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </select>
+</mapper>
