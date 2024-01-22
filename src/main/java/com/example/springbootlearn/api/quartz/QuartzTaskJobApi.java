@@ -6,12 +6,12 @@ import com.example.springbootlearn.entity.user.UserInfoBean;
 import com.example.springbootlearn.service.quartz.QuartzTaskJobService;
 import com.example.springbootlearn.utils.enumType.Constant;
 import io.swagger.annotations.Api;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 

@@ -29,6 +29,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/")
                 .excludePathPatterns("/index")
                 .excludePathPatterns("/static/**")
+                .excludePathPatterns("/login/api/*")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
     }
 

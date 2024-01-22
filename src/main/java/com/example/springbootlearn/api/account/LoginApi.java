@@ -6,10 +6,7 @@ import com.example.springbootlearn.utils.enumType.Constant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -40,8 +37,8 @@ public class LoginApi {
      * @return
      */
     @ApiOperation("获取验证码")
-    @PostMapping("/getVerifyCode")
-    ResponseBean getVerifyCode(@RequestBody Map<String, Object> accountObject) {
+    @GetMapping("/getVerifyCode")
+    ResponseBean getVerifyCode(@RequestParam Map<String, Object> accountObject) {
         ResponseBean response = new ResponseBean();
         try {
             Map<String, Object> flag = loginService.getVerifyCode(accountObject.get(Constant.ACCOUNT).toString());
