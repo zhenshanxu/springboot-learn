@@ -1,5 +1,6 @@
 package com.example.springbootlearn.api.account;
 
+import com.example.springbootlearn.config.aop.SysLog;
 import com.example.springbootlearn.entity.assist.ResponseBean;
 import com.example.springbootlearn.service.account.LoginService;
 import com.example.springbootlearn.utils.enumType.Constant;
@@ -36,6 +37,7 @@ public class LoginApi {
      * @param accountObject
      * @return
      */
+    @SysLog("获取验证码")
     @ApiOperation("获取验证码")
     @GetMapping("/getVerifyCode")
     ResponseBean getVerifyCode(@RequestParam Map<String, Object> accountObject) {
@@ -62,6 +64,7 @@ public class LoginApi {
      * @param codeToLogin
      * @return
      */
+    @SysLog("验证码登录")
     @ApiOperation("验证码登录")
     @PostMapping("/codeToLogin")
     public ResponseBean codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
@@ -88,6 +91,7 @@ public class LoginApi {
      * @param accountToLogin
      * @return
      */
+    @SysLog("密码登录")
     @ApiOperation("密码登录")
     @PostMapping("/accountToLogin")
     public ResponseBean accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
@@ -114,6 +118,7 @@ public class LoginApi {
      * @param signUpParam
      * @return
      */
+    @SysLog("新用户注册")
     @ApiOperation("新用户注册")
     @PostMapping("/signUp")
     public ResponseBean signUp(@RequestBody Map<String, Object> signUpParam) {

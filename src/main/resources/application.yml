@@ -18,5 +18,5 @@ spring:
 
   sql: # 初始化数据表
     init:
-      mode: embedded  # 执行规则 never: 不执行;always: 执行;embedded:只初始化内存数据库（默认值）,如h2等
+      mode: never  # 执行规则 never: 不执行;always: 执行;embedded:只初始化内存数据库（默认值）,如h2等
       schema-locations: classpath:sql/create_table.sql # 初始化数据表 sql 语句

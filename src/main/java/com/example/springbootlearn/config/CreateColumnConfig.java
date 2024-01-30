@@ -2,7 +2,6 @@ package com.example.springbootlearn.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.InvalidResultSetAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,10 +27,14 @@ public class CreateColumnConfig {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @PostConstruct
+    // @PostConstruct
     void init() {
         try {
-            // todo 测试数据 2024 年 1月 3日，新增测试表 tb_test 新增字段
+            // 查询数据库表是否存在
+            Object index = jdbcTemplate.queryForObject("SHOW TABLES LIKE 'table_name';", Object.class);
+            if (NumberUtils.INTEGER_ONE.equals(index)) {
+                return;
+            }
             // 判断字段是否存在
             Integer i = jdbcTemplate.queryForObject("select count(*) from information_schema.columns where table_name = 'tb_test' and column_name = 'ERROR_CODE';", Integer.class);
             if (NumberUtils.INTEGER_ZERO.equals(i)) {

@@ -1,5 +1,6 @@
 package com.example.springbootlearn.entity.user;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.springbootlearn.entity.assist.AssistBean;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,6 +24,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ApiModel("用户详情")
 @Accessors(chain = true)
+@TableName("sys_user_info")
 public class UserInfoBean extends AssistBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
