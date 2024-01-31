@@ -11,6 +11,7 @@ import com.example.springbootlearn.utils.send.MailSendUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -131,7 +132,7 @@ public class LoginServiceImpl implements LoginService {
             userInfo.setPhone(account);
         }
         List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
-        if (userInfoList.size() != 0) {
+        if (CollectionUtils.isEmpty(userInfoList)) {
             result.put(Constant.ERROR_VALUE, "该账号已注册，请登录!");
             return result;
         }
@@ -185,17 +186,14 @@ public class LoginServiceImpl implements LoginService {
     private Map<String, Object> checkVerifyCode(String account, Map<String, Object> objectMap) {
         String verifyCode = String.valueOf(objectMap.get(Constant.VERIFY_CODE));
         Object code = redisService.get(account);
+        Map<String, Object> objectObj = new HashMap<>();
         if (code == null) {
-            return new HashMap<String, Object>() {{
-                put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
-            }};
+            objectObj.put(Constant.ERROR_VALUE, "验证码已过期,请重新获取!");
         }
         if (verifyCode == code) {
-            return new HashMap<String, Object>() {{
-                put(Constant.ERROR_VALUE, "验证码不正确,请重新输入!");
-            }};
+            objectObj.put(Constant.ERROR_VALUE, "验证码不正确,请重新输入!");
         }
-        return new HashMap<>();
+        return objectObj;
     }
 
     /**
@@ -211,18 +209,13 @@ public class LoginServiceImpl implements LoginService {
             userInfo.setPhone(account);
         }
         List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
-        UserInfoBean user = new UserInfoBean();
-        if (userInfoList.size() == 0) {
-            return new HashMap<String, Object>() {{
-                put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
-            }};
+        Map<String, Object> objectMap = new HashMap<>();
+        if (CollectionUtils.isEmpty(userInfoList)) {
+            objectMap.put(Constant.ERROR_VALUE, "未检测到账号,请注册后使用!");
         } else {
-            user = userInfoList.get(0);
+            objectMap.put("userInfo", userInfoList.get(0));
         }
-        UserInfoBean finalUser = user;
-        return new HashMap<String, Object>() {{
-            put("userInfo", finalUser);
-        }};
+        return objectMap;
     }
 
 
