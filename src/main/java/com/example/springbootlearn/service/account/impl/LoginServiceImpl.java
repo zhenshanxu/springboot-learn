@@ -167,7 +167,7 @@ public class LoginServiceImpl implements LoginService {
                     .replace("${item}", "学习项目")
                     .replace("${verifyCode}", String.valueOf(verifyCode))
                     .replace("${time}", String.valueOf(time / 60));
-            mailSendUtil.simpleSend(account, "验证码", content);
+            mailSendUtil.sendWithHtml(account, "验证码", content);
         } else {
             // TODO 添加短信
         }
