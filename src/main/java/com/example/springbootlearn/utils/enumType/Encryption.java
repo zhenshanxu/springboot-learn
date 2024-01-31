@@ -1,7 +1,6 @@
 package com.example.springbootlearn.utils.enumType;
 
 import cn.hutool.crypto.SecureUtil;
-import com.example.springbootlearn.config.SystemObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
