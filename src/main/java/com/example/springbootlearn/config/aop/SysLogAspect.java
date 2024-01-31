@@ -50,8 +50,9 @@ public class SysLogAspect {
 
     /**
      * 保存日志
+     *
      * @param joinPoint 执行方法
-     * @param time 执行时长
+     * @param time      执行时长
      */
     private void saveSysLog(ProceedingJoinPoint joinPoint, long time) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -59,7 +60,7 @@ public class SysLogAspect {
 
         SysLogBean sysLog = new SysLogBean();
         SysLog syslog = method.getAnnotation(SysLog.class);
-        if(syslog!=null){
+        if (syslog != null) {
             // 方法描述
             sysLog.setOperation(syslog.value());
         }
@@ -71,10 +72,11 @@ public class SysLogAspect {
 
         //请求的参数
         Object[] args = joinPoint.getArgs();
-        try{
+        try {
             String params = Arrays.toString(args);
             sysLog.setParams(params);
-        }catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
 
         // 获取request
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
