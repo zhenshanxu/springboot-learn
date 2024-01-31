@@ -88,12 +88,12 @@ public class Constant {
     public static final String ACQUIESCENT_PASSWORD = "123456";
 
     /**
-     * 验证码 - 标识
+     * 标识 - 验证码
      */
     public static final String VERIFY_CODE = "verifyCode";
 
     /**
-     * 内容 - 标识
+     * 标识 - 内容
      */
     public static final String CONTENT = "content";
 
