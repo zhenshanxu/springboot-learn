@@ -41,9 +41,8 @@ public class Common {
     public static String getVerifyCodeHtml() {
         return "<div style='margin:auto;width:90%'>"
                 + "<h2 style='text-align:left'>亲爱的用户：</h2>"
-                + "<h3 style='text-indent: 4em;'>${name} 您好!</h3>"
+                + "<h3 style='text-indent: 2em;'>${name} 您好!</h3>"
                 + "<h3 style='text-indent: 30px;'>您登录的账号 ${name} 所需的 ${item} 的令牌验证码 为：</h3>"
-                + "<div>"
                 + "<p style='text-indent: 75px;font-size:25px;color:darkblue;line-height:10px'> ${verifyCode} </p>"
                 + "<p style='text-indent: 20px;font-size:15px;color:red;line-height:10px'>有效时间 ${time} 分钟有效</p>"
                 + "<p style='text-indent: 20px;font-size:15px;color:red;line-height:1px'>为保证账号安全，请勿向任何人提供验证码</p>"

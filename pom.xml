@@ -178,6 +178,12 @@
             <version>3.4.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
         <!-- ↑ 依赖 ↑ -->
     </dependencies>
 
