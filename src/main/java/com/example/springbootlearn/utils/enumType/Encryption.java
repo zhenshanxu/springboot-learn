@@ -69,7 +69,7 @@ public class Encryption {
         int offset = 0;
         String passwordMd5 = SecureUtil.md5("test" + 1 + str);;
         System.out.println("Md5加密：" +passwordMd5);
-        String encode = KaiserEncrypt(passwordMd5, offset);
+        String encode = kaiserEncrypt(passwordMd5, offset);
         System.out.println("加密后：" + encode);
 
         String decode = decryptKaiser(encode, offset);
