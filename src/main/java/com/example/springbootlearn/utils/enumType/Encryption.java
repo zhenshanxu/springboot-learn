@@ -23,7 +23,7 @@ public class Encryption {
      * @param offset   偏移值
      * @return 加密文本
      */
-    private static String caesarCipherEncrypt(String original, int offset) {
+    private static String kaiserEncrypt(String original, int offset) {
         // 将字符串转为数组
         char[] chars = original.toCharArray();
         StringBuilder buffer = new StringBuilder();
@@ -69,7 +69,7 @@ public class Encryption {
         int offset = 0;
         String passwordMd5 = SecureUtil.md5("test" + 1 + str);;
         System.out.println("Md5加密：" +passwordMd5);
-        String encode = caesarCipherEncrypt(passwordMd5, offset);
+        String encode = KaiserEncrypt(passwordMd5, offset);
         System.out.println("加密后：" + encode);
 
         String decode = decryptKaiser(encode, offset);
