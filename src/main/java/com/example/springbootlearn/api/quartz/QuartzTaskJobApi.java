@@ -31,7 +31,7 @@ public class QuartzTaskJobApi {
     private final QuartzTaskJobService quartzJobService;
 
 
-    private final static UserInfoBean userInfo = new UserInfoBean().setId(1).setName("fake");
+    private final static UserInfoBean USER_INFO = new UserInfoBean().setId(1).setUserName("fake");
 
     public QuartzTaskJobApi(QuartzTaskJobService quartzJobService) {
         this.quartzJobService = quartzJobService;
@@ -47,7 +47,7 @@ public class QuartzTaskJobApi {
     ResponseBean addJob(HttpServletRequest request, @RequestBody QuartzTaskJobBean quartzBean) {
         ResponseBean response = new ResponseBean();
         try {
-            quartzBean.setCreator(userInfo.getId());
+            quartzBean.setCreator(USER_INFO.getId());
             Map<String, Object> objectMap = quartzJobService.addJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
                 response.setSuccess(Boolean.FALSE);

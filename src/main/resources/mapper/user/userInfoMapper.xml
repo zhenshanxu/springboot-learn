@@ -8,7 +8,7 @@
         INSERT INTO
         sys_user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="name !=null and name !='' ">`name`,</if>
+            <if test="userName !=null and userName !='' ">user_name,</if>
             <if test="phone !=null and phone!='' ">phone,</if>
             <if test="email !=null and email !='' ">email,</if>
             <if test="password !=null and password !='' ">password,</if>
@@ -19,7 +19,7 @@
             <if test="modifyTime !=null and modifyTime !='' ">modify_time</if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="name !=null and name !=0 ">#{name},</if>
+            <if test="userName !=null and userName !='' ">#{userName},</if>
             <if test="phone !=null and phone!='' ">#{phone},</if>
             <if test="email !=null and email !='' ">#{email},</if>
             <if test="password !=null and password !='' ">#{password},</if>
@@ -36,7 +36,7 @@
         UPDATE
         sys_user_info
         <set>
-            <if test="name !=null and name !='' ">`name`= #{name},</if>
+            <if test="userName !=null and userName !='' ">user_name= #{userName},</if>
             <if test="phone !=null and phone!='' ">phone = #{phone},</if>
             <if test="email !=null and email !='' ">email = #{email},</if>
             <if test="password !=null and password !='' ">password = #{password},</if>

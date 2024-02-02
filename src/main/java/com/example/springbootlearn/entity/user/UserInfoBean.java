@@ -36,7 +36,7 @@ public class UserInfoBean extends AssistBean implements Serializable {
      * 用户名
      */
     @ApiModelProperty("用户名")
-    private String name;
+    private String userName;
 
     /**
      * 用户头像

@@ -115,8 +115,8 @@ public class LoginApi {
     /**
      * 注册新用户
      *
-     * @param signUpParam
-     * @return
+     * @param signUpParam 注册用户信息
+     * @return 结果
      */
     @SysLog("新用户注册")
     @ApiOperation("新用户注册")

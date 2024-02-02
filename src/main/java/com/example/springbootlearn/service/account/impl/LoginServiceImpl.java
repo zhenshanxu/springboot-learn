@@ -132,21 +132,12 @@ public class LoginServiceImpl implements LoginService {
             userInfo.setPhone(account);
         }
         List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
-        if (CollectionUtils.isEmpty(userInfoList)) {
+        if (!CollectionUtils.isEmpty(userInfoList)) {
             result.put(Constant.ERROR_VALUE, "该账号已注册，请登录!");
             return result;
         }
-        userInfo.setCreateTime(System.currentTimeMillis());
+        userInfo.setPassword(password);
         userInfoService.insertUserInfo(userInfo);
-        UserInfoBean userInfoBean = new UserInfoBean();
-        userInfoBean.setId(userInfo.getId())
-                .setName("新用户-" + userInfo.getId())
-                .setPassword(Common.getPasswordMd5(userInfo.getId(), password));
-        userInfoBean.setCreateTime(System.currentTimeMillis());
-        userInfoBean.setMender(userInfo.getId());
-        userInfoBean.setCreator(userInfo.getId());
-        userInfoBean.setModifyTime(System.currentTimeMillis());
-        userInfoService.updateUserInfo(userInfoBean);
         return result;
     }
 
