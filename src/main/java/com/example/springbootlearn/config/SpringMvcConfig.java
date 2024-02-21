@@ -22,7 +22,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-
+//
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new TokenInterceptor())
                 .addPathPatterns("/**")
@@ -30,13 +30,17 @@ public class SpringMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/index")
                 .excludePathPatterns("/static/**")
                 .excludePathPatterns("/login/api/*")
-                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+                .excludePathPatterns("/login/api/*")
+                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**", "/doc.html/**");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("doc.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
 
         registry.addResourceHandler("/webjars/**")

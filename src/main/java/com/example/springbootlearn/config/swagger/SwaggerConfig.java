@@ -1,5 +1,6 @@
-package com.example.springbootlearn.config;
+package com.example.springbootlearn.config.swagger;
 
+import com.example.springbootlearn.config.SystemObject;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
