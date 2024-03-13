@@ -46,4 +46,3 @@ spring:
 
   user-defined: # 项目自定义配置
     swagger-enable: true # swagger 的 enable 配置
-    md5-salt: password_salt  # 密码的盐值

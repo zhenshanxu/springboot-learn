@@ -21,9 +21,4 @@ public class UserDefined {
      * swagger Enable 状态
      */
     private Boolean swaggerEnable;
-
-    /**
-     * Salt值
-     */
-    private String md5Salt;
 }

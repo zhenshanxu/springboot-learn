@@ -60,7 +60,7 @@ public class LoginServiceImpl implements LoginService {
             return objectMap;
         }
         UserInfoBean user = (UserInfoBean) objectMap.get("userInfo");
-        if (!user.getPassword().equals(Common.getPasswordMd5(user.getId(), password))) {
+        if (!user.getPassword().equals(Common.getPasswordMd5(user.getId(), password,user.getSalt()))) {
             result.put(Constant.ERROR_VALUE, "密码输入错误,请重新输入!");
             return result;
         }

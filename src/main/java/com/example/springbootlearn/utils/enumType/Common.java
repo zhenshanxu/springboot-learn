@@ -1,7 +1,6 @@
 package com.example.springbootlearn.utils.enumType;
 
 import cn.hutool.crypto.SecureUtil;
-import com.example.springbootlearn.config.SystemObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -50,8 +49,8 @@ public class Common {
     /**
      * 返回md5加密后的密码，根据当前配置的salt
      */
-    public static String getPasswordMd5(int userId, String password) {
-        return SecureUtil.md5(SystemObject.userDefined.getMd5Salt() + userId + password);
+    public static String getPasswordMd5(int userId, String password, String salt) {
+        return SecureUtil.md5(salt + userId + password);
     }
 
     /**
@@ -147,11 +146,23 @@ public class Common {
         return shortBuffer.toString();
     }
 
-    public static void main(String[] args) {
-        int[] nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        int i = removeDuplicates(nums);
+    public static String getSalt(int n){
+        char[] chars = "abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ0123456789".toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++)
+        {
+            char aChar = chars[new Random().nextInt(chars.length)];
+            sb.append(aChar);
+        }
+        return sb.toString();
     }
 
+    /**
+     * 数组去重
+     *
+     * @param nums
+     * @return
+     */
     public static int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -169,5 +180,12 @@ public class Common {
         }
         System.out.println(Arrays.toString(nums));
         return p + 1;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 3; i++) {
+            String shortRandomCode = getShortRandomCode();
+            System.out.println(shortRandomCode);
+        }
     }
 }

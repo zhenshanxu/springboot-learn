@@ -46,8 +46,9 @@ public class IUserInfoServiceImpl implements IUserInfoService {
         userInfoBean.setModifyTime(System.currentTimeMillis());
         userInfoDao.insertUserInfo(userInfoBean);
         // 设置用户密码
-        password = Common.getPasswordMd5(userInfoBean.getId(), password);
-        userInfoDao.updateUserInfo(new UserInfoBean().setId(userInfoBean.getId()).setPassword(password));
+        String salt = Common.getShortRandomCode();
+        password = Common.getPasswordMd5(userInfoBean.getId(), password,salt);
+        userInfoDao.updateUserInfo(new UserInfoBean().setId(userInfoBean.getId()).setPassword(password).setSalt(salt));
         return new HashMap<>();
     }
 

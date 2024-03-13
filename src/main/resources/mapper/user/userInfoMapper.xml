@@ -43,6 +43,7 @@
             <if test="userAvatar !=null and userAvatar !='' ">user_avatar = #{userAvatar},</if>
             <if test="isDelete !=null and isDelete !=0 ">is_delete = #{isDelete},</if>
             <if test="mender !=null and mender !=0 ">mender = #{mender},</if>
+            <if test="salt !=null and salt !='' ">salt = #{salt},</if>
             <if test="modifyTime !=null and modifyTime !='' ">modify_time= #{modifyTime}</if>
         </set>
         WHERE id = #{id}

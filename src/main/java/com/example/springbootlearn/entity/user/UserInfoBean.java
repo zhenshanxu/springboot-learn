@@ -62,4 +62,7 @@ public class UserInfoBean extends AssistBean implements Serializable {
      */
     @ApiModelProperty("密码")
     private String password;
+
+    @ApiModelProperty("salt")
+    private String salt;
 }
