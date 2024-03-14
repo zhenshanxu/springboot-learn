@@ -1,6 +1,6 @@
 package com.example.springbootlearn.api.user;
 
-import com.example.springbootlearn.entity.assist.ResponseBean;
+import com.example.springbootlearn.entity.assist.ResponseResult;
 import com.example.springbootlearn.entity.user.UserInfoBean;
 import com.example.springbootlearn.service.user.IUserInfoService;
 import com.example.springbootlearn.utils.enumType.Constant;
@@ -37,8 +37,8 @@ public class UserInfoApi {
 
     @ApiOperation("添加用户信息")
     @PostMapping("/add")
-    public ResponseBean addUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult addUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = userInfoService.insertUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
@@ -57,8 +57,8 @@ public class UserInfoApi {
 
     @ApiOperation("修改更新用户信息")
     @PostMapping("/update")
-    public ResponseBean updateUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult updateUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = userInfoService.updateUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
@@ -77,8 +77,8 @@ public class UserInfoApi {
 
     @ApiOperation("用户信息删除")
     @PostMapping("/delete")
-    public ResponseBean deleteUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult deleteUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult response = new ResponseResult();
         try {
             userInfoService.deleteUserInfo(userInfo);
             response.setSuccess(true);
@@ -92,8 +92,8 @@ public class UserInfoApi {
 
     @ApiOperation("查询用户信息")
     @PostMapping("/query")
-    public ResponseBean queryUserInfoList(@RequestBody UserInfoBean userInfo) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult queryUserInfoList(@RequestBody UserInfoBean userInfo) {
+        ResponseResult response = new ResponseResult();
         try {
             List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
             response.setSuccess(true);

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @Project springboot-learn
  * @Description
@@ -15,9 +17,9 @@ import lombok.experimental.Accessors;
  */
 @Data
 @NoArgsConstructor
-@ApiModel("请求实体")
+@ApiModel("统一响应结果")
 @Accessors(chain = true)
-public class ResponseBean {
+public class ResponseResult implements Serializable {
 
     /**
      * 请求状态 true：成功 false：失败
@@ -42,4 +44,5 @@ public class ResponseBean {
      */
     @ApiModelProperty("额外信息")
     private Object extraMessage;
+
 }

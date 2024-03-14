@@ -1,7 +1,7 @@
 package com.example.springbootlearn.api.account;
 
 import com.example.springbootlearn.config.aop.SysLog;
-import com.example.springbootlearn.entity.assist.ResponseBean;
+import com.example.springbootlearn.entity.assist.ResponseResult;
 import com.example.springbootlearn.service.account.LoginService;
 import com.example.springbootlearn.utils.enumType.Constant;
 import io.swagger.annotations.Api;
@@ -40,8 +40,8 @@ public class LoginApi {
     @SysLog("获取验证码")
     @ApiOperation("获取验证码")
     @GetMapping("/getVerifyCode")
-    ResponseBean getVerifyCode(@RequestParam Map<String, Object> accountObject) {
-        ResponseBean response = new ResponseBean();
+    ResponseResult getVerifyCode(@RequestParam Map<String, Object> accountObject) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = loginService.getVerifyCode(accountObject.get(Constant.ACCOUNT).toString());
             if (flag.containsKey(Constant.ERROR_VALUE)) {
@@ -67,8 +67,8 @@ public class LoginApi {
     @SysLog("验证码登录")
     @ApiOperation("验证码登录")
     @PostMapping("/codeToLogin")
-    public ResponseBean codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = loginService.codeToLogin(codeToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
@@ -94,8 +94,8 @@ public class LoginApi {
     @SysLog("密码登录")
     @ApiOperation("密码登录")
     @PostMapping("/accountToLogin")
-    public ResponseBean accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = loginService.accountToLogin(accountToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
@@ -121,8 +121,8 @@ public class LoginApi {
     @SysLog("新用户注册")
     @ApiOperation("新用户注册")
     @PostMapping("/signUp")
-    public ResponseBean signUp(@RequestBody Map<String, Object> signUpParam) {
-        ResponseBean response = new ResponseBean();
+    public ResponseResult signUp(@RequestBody Map<String, Object> signUpParam) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> flag = loginService.signUp(signUpParam);
             if (flag.containsKey(Constant.ERROR_VALUE)) {

@@ -1,6 +1,6 @@
 package com.example.springbootlearn.api.quartz;
 
-import com.example.springbootlearn.entity.assist.ResponseBean;
+import com.example.springbootlearn.entity.assist.ResponseResult;
 import com.example.springbootlearn.entity.quartz.QuartzTaskJobBean;
 import com.example.springbootlearn.entity.user.UserInfoBean;
 import com.example.springbootlearn.service.quartz.QuartzTaskJobService;
@@ -44,8 +44,8 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/addJob")
-    ResponseBean addJob(HttpServletRequest request, @RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseBean response = new ResponseBean();
+    ResponseResult addJob(HttpServletRequest request, @RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult response = new ResponseResult();
         try {
             quartzBean.setCreator(USER_INFO.getId());
             Map<String, Object> objectMap = quartzJobService.addJob(quartzBean);
@@ -70,8 +70,8 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/updateJob")
-    ResponseBean updateJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseBean response = new ResponseBean();
+    ResponseResult updateJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> objectMap = quartzJobService.updateJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
@@ -95,8 +95,8 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/deleteJob")
-    ResponseBean deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseBean response = new ResponseBean();
+    ResponseResult deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult response = new ResponseResult();
         try {
             Map<String, Object> objectMap = quartzJobService.deleteJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
@@ -120,8 +120,8 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/queryJob")
-    ResponseBean queryJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseBean response = new ResponseBean();
+    ResponseResult queryJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult response = new ResponseResult();
         try {
             List<QuartzTaskJobBean> quartzTaskJobList = quartzJobService.queryJob(quartzBean);
             response.setSuccess(Boolean.TRUE);
