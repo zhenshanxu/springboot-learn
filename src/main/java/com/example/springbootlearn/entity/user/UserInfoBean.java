@@ -44,6 +44,17 @@ public class UserInfoBean extends AssistBean implements Serializable {
     @ApiModelProperty("用户头像")
     private String userAvatar;
 
+    /**
+     * 用户性别：0 未知; 1 男; 2 女
+     */
+    @ApiModelProperty("用户性别：0 未知; 1 男; 2 女")
+    private String gender;
+
+    /**
+     * 账号状态
+     */
+    @ApiModelProperty("账号状态：true 正常，false 禁用")
+    private boolean status;
 
     /**
      * 邮件

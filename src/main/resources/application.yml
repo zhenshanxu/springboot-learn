@@ -4,11 +4,6 @@ spring:
   profiles: # 加载启动环境
     active: dev
 
-  security:
-    user:
-      name: admin
-      password: admin123
-
   # ================ 公共配置(优先级低于application-xxx.yml)  ================
 
   mvc: # mvc配置

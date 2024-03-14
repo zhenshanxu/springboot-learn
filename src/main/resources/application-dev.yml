@@ -39,8 +39,6 @@ spring:
             socketFactory:
               fallback: false
 
-
-
   upload-config: # 文件保存的根目录，所有文件都保存在整个文件夹下
     root-folder: E:\Test File
 
