@@ -50,15 +50,12 @@ public class QuartzTaskJobApi {
             quartzBean.setCreator(USER_INFO.getId());
             Map<String, Object> objectMap = quartzJobService.addJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE);
-                response.setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE);
-                response.setResult("添加定时任务完成!");
+                response.setSuccess(Boolean.TRUE).setResult("添加定时任务完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -75,15 +72,12 @@ public class QuartzTaskJobApi {
         try {
             Map<String, Object> objectMap = quartzJobService.updateJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE);
-                response.setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE);
-                response.setResult("定时任务修改完成!");
+                response.setSuccess(Boolean.TRUE).setResult("定时任务修改完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -100,15 +94,12 @@ public class QuartzTaskJobApi {
         try {
             Map<String, Object> objectMap = quartzJobService.deleteJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE);
-                response.setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE);
-                response.setResult("定时任务删除完成!");
+                response.setSuccess(Boolean.TRUE).setResult("定时任务删除完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -124,11 +115,9 @@ public class QuartzTaskJobApi {
         ResponseResult response = new ResponseResult();
         try {
             List<QuartzTaskJobBean> quartzTaskJobList = quartzJobService.queryJob(quartzBean);
-            response.setSuccess(Boolean.TRUE);
-            response.setResult(quartzTaskJobList);
+            response.setSuccess(Boolean.TRUE).setResult(quartzTaskJobList);
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }

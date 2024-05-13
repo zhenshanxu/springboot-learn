@@ -45,15 +45,12 @@ public class LoginApi {
         try {
             Map<String, Object> flag = loginService.getVerifyCode(accountObject.get(Constant.ACCOUNT).toString());
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult("验证码发送成功!");
+                response.setSuccess(true).setResult("验证码发送成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -72,15 +69,12 @@ public class LoginApi {
         try {
             Map<String, Object> flag = loginService.codeToLogin(codeToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult(flag);
+                response.setSuccess(true).setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -99,15 +93,12 @@ public class LoginApi {
         try {
             Map<String, Object> flag = loginService.accountToLogin(accountToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult(flag);
+                response.setSuccess(true).setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -126,15 +117,12 @@ public class LoginApi {
         try {
             Map<String, Object> flag = loginService.signUp(signUpParam);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult(flag);
+                response.setSuccess(true).setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }

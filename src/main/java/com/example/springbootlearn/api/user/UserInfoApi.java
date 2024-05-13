@@ -42,15 +42,12 @@ public class UserInfoApi {
         try {
             Map<String, Object> flag = userInfoService.insertUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult("新用户添加成功!");
+                response.setSuccess(true).setResult("新用户添加成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -62,15 +59,12 @@ public class UserInfoApi {
         try {
             Map<String, Object> flag = userInfoService.updateUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false);
-                response.setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true);
-                response.setResult("新用户添加成功!");
+                response.setSuccess(true).setResult("新用户添加成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -81,11 +75,9 @@ public class UserInfoApi {
         ResponseResult response = new ResponseResult();
         try {
             userInfoService.deleteUserInfo(userInfo);
-            response.setSuccess(true);
-            response.setResult("用户信息删除成功!");
+            response.setSuccess(true).setResult("用户信息删除成功!");
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -96,11 +88,9 @@ public class UserInfoApi {
         ResponseResult response = new ResponseResult();
         try {
             List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
-            response.setSuccess(true);
-            response.setResult(userInfoList);
+            response.setSuccess(true).setResult(userInfoList);
         } catch (Exception e) {
-            response.setSuccess(false);
-            response.setErrorMessage(e.getMessage());
+            response.setSuccess(false).setErrorMessage(e.getMessage());
         }
         return response;
     }
