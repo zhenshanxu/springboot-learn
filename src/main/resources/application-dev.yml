@@ -44,3 +44,15 @@ spring:
 
   user-defined: # 项目自定义配置
     swagger-enable: true # swagger 的 enable 配置
+
+  payment:
+    # 支付宝支付配置
+    alipay:
+      # 支付宝网关
+      gateway-url:
+      # 支付宝appid
+      appid:
+      # 支付宝公钥
+      publicKey:
+      # 商品私钥
+      merchantPrivateKey:
