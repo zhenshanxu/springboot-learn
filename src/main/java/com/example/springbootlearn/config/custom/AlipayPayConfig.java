@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @ConfigurationProperties(prefix = "spring.payment.alipay")
-public class AlipayConfig {
+public class AlipayPayConfig {
 
     @ApiModelProperty("支付宝appid")
     private String appId;

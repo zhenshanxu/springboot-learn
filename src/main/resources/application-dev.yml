@@ -56,3 +56,18 @@ spring:
       publicKey:
       # 商品私钥
       merchantPrivateKey:
+    wechat:
+      # 微信商户号
+      mchId:
+      # 微信公众号 appid
+      appid:
+      #微信公众平台appSecret
+      appSecret:
+      # v3 接口ca证书 apiclient_key.pem
+      privateKey:
+      # 微信支付证书
+      wechatPayKey:
+      # 商户证书序列号CA证书
+      mchSerialNo:
+      # apiV3 密钥
+      apiV3Key:
