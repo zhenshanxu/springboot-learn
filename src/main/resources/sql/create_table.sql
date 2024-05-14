@@ -1,6 +1,6 @@
 
 -- ----------------------------
---- 项目启动默认创建 sys_log 系统日志
+-- 项目启动默认创建 sys_log 系统日志
 CREATE TABLE IF NOT EXISTS `sys_log` (
    `id` int(11) NOT NULL AUTO_INCREMENT,
    `user_id` int(11) DEFAULT NULL COMMENT '用户id',
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `sys_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统日志';
 
 -- ----------------------------
---- 项目启动默认创建 sys_user_info 用户信息
+-- 项目启动默认创建 sys_user_info 用户信息
 CREATE TABLE  IF NOT EXISTS `sys_user_info` (
      `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户id',
      `user_name` varchar(32) DEFAULT NULL COMMENT '用户名',
@@ -30,4 +30,3 @@ CREATE TABLE  IF NOT EXISTS `sys_user_info` (
      PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户详情';
 
----
