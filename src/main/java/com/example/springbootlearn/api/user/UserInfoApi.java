@@ -37,60 +37,60 @@ public class UserInfoApi {
 
     @ApiOperation("添加用户信息")
     @PostMapping("/add")
-    public ResponseResult addUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Object> addUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult<Object> response = new ResponseResult();
         try {
             Map<String, Object> flag = userInfoService.insertUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult("新用户添加成功!");
+                response.ok().setResult("新用户添加成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
 
     @ApiOperation("修改更新用户信息")
     @PostMapping("/update")
-    public ResponseResult updateUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Object> updateUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = userInfoService.updateUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult("新用户添加成功!");
+                response.ok().setResult("新用户添加成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
 
     @ApiOperation("用户信息删除")
     @PostMapping("/delete")
-    public ResponseResult deleteUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Object> deleteUserInfo(@RequestBody UserInfoBean userInfo) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             userInfoService.deleteUserInfo(userInfo);
-            response.setSuccess(true).setResult("用户信息删除成功!");
+            response.ok().setResult("用户信息删除成功!");
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
 
     @ApiOperation("查询用户信息")
     @PostMapping("/query")
-    public ResponseResult queryUserInfoList(@RequestBody UserInfoBean userInfo) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<List<UserInfoBean>> queryUserInfoList(@RequestBody UserInfoBean userInfo) {
+        ResponseResult<List<UserInfoBean>> response = new ResponseResult<>();
         try {
             List<UserInfoBean> userInfoList = userInfoService.queryUserInfoList(userInfo);
-            response.setSuccess(true).setResult(userInfoList);
+            response.ok().setResult(userInfoList);
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }

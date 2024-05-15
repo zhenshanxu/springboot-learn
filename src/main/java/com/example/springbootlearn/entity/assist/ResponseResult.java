@@ -19,7 +19,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ApiModel("统一响应结果")
 @Accessors(chain = true)
-public class ResponseResult implements Serializable {
+public class ResponseResult<T> implements Serializable {
 
     /**
      * 请求状态 true：成功 false：失败
@@ -45,4 +45,13 @@ public class ResponseResult implements Serializable {
     @ApiModelProperty("额外信息")
     private Object extraMessage;
 
+    @ApiModelProperty("成功状态")
+    public static ResponseResult<Object> ok() {
+        return new ResponseResult<>().setSuccess(Boolean.TRUE);
+    }
+
+    @ApiModelProperty("失败状态")
+    public static ResponseResult<Object> err() {
+        return new ResponseResult<>().setSuccess(Boolean.FALSE);
+    }
 }
