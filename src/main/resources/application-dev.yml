@@ -56,6 +56,7 @@ spring:
       publicKey:
       # 商品私钥
       merchantPrivateKey:
+    # 微信支付配置
     wechat:
       # 微信商户号
       mchId:
