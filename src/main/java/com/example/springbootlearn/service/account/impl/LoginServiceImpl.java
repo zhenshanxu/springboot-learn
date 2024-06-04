@@ -65,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
             return result;
         }
         // 将用户 token 放到 Redis 中
-        String token = JwtUtil.createJWT(user.getId(), account);
+        String token = JwtUtil.createJwt(user.getId(), account);
         redisService.set(Constant.LOGIN_TOKEN + ":" + token, user, Constant.TOKEN_EXPIRE_TIME);
         result.put(Constant.TOKEN_SYMBOL, token);
         return result;
@@ -93,7 +93,7 @@ public class LoginServiceImpl implements LoginService {
         }
         UserInfoBean user = (UserInfoBean) objectMap.get("userInfo");
         // 将用户 token 放到 Redis 中
-        String token = JwtUtil.createJWT(user.getId(), account);
+        String token = JwtUtil.createJwt(user.getId(), account);
         redisService.set(Constant.LOGIN_TOKEN + ":" + token, user, Constant.TOKEN_EXPIRE_TIME);
         result.put(Constant.TOKEN_SYMBOL, token);
         return result;

@@ -27,7 +27,7 @@ public class JwtUtil {
      * @param subject
      * @return
      */
-    public static String createJWT(int objectId,String subject) {
+    public static String createJwt(int objectId,String subject) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         //设置过期时间
         long presentTime = System.currentTimeMillis();
@@ -76,7 +76,7 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        String JWT = createJWT(1, "username");
+        String JWT = createJwt(1, "username");
         System.out.println("测试token:" + JWT);
 //        String jwt = "" +
 //                "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoidXNlcm5hbWUiLCJpc3MiOiJlMzBmN2U4Yy0wODY5LTQ5NDItYjk5Yy01ZDBlYWQwN2ZjMGEiLCJpYXQiOjE1OTUzMjA0MzIsImV4cCI6MTU5NTkyNTIzMn0.f_v1dN3YPoH9rez-Tb2i0w4BuP1yIul_FA7rWYam-So";
