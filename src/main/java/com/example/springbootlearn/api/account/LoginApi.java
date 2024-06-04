@@ -40,17 +40,17 @@ public class LoginApi {
     @SysLog("获取验证码")
     @ApiOperation("获取验证码")
     @GetMapping("/getVerifyCode")
-    ResponseResult getVerifyCode(@RequestParam Map<String, Object> accountObject) {
-        ResponseResult response = new ResponseResult();
+    ResponseResult<Object> getVerifyCode(@RequestParam Map<String, Object> accountObject) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = loginService.getVerifyCode(accountObject.get(Constant.ACCOUNT).toString());
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult("验证码发送成功!");
+                response.ok().setResult("验证码发送成功!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -64,17 +64,17 @@ public class LoginApi {
     @SysLog("验证码登录")
     @ApiOperation("验证码登录")
     @PostMapping("/codeToLogin")
-    public ResponseResult codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Map<String, Object>> codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
+        ResponseResult<Map<String, Object>> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = loginService.codeToLogin(codeToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult(flag);
+                response.ok().setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -88,17 +88,17 @@ public class LoginApi {
     @SysLog("密码登录")
     @ApiOperation("密码登录")
     @PostMapping("/accountToLogin")
-    public ResponseResult accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Map<String, Object>> accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
+        ResponseResult<Map<String, Object>> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = loginService.accountToLogin(accountToLogin);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult(flag);
+                response.ok().setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -112,17 +112,17 @@ public class LoginApi {
     @SysLog("新用户注册")
     @ApiOperation("新用户注册")
     @PostMapping("/signUp")
-    public ResponseResult signUp(@RequestBody Map<String, Object> signUpParam) {
-        ResponseResult response = new ResponseResult();
+    public ResponseResult<Map<String, Object>> signUp(@RequestBody Map<String, Object> signUpParam) {
+        ResponseResult<Map<String, Object>> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = loginService.signUp(signUpParam);
             if (flag.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(false).setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
+                response.err().setErrorMessage(flag.get(Constant.ERROR_VALUE).toString());
             } else {
-                response.setSuccess(true).setResult(flag);
+                response.ok().setResult(flag);
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }

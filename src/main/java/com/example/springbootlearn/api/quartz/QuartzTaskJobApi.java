@@ -44,18 +44,18 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/addJob")
-    ResponseResult addJob(HttpServletRequest request, @RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseResult response = new ResponseResult();
+    ResponseResult<Object> addJob(HttpServletRequest request, @RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             quartzBean.setCreator(USER_INFO.getId());
             Map<String, Object> objectMap = quartzJobService.addJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.err().setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE).setResult("添加定时任务完成!");
+                response.ok().setResult("添加定时任务完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -67,17 +67,17 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/updateJob")
-    ResponseResult updateJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseResult response = new ResponseResult();
+    ResponseResult<Object> updateJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             Map<String, Object> objectMap = quartzJobService.updateJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.err().setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE).setResult("定时任务修改完成!");
+                response.ok().setResult("定时任务修改完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -89,17 +89,17 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/deleteJob")
-    ResponseResult deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseResult response = new ResponseResult();
+    ResponseResult<Map<String, Object>> deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult<Map<String, Object>> response = new ResponseResult<>();
         try {
             Map<String, Object> objectMap = quartzJobService.deleteJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.setSuccess(Boolean.FALSE).setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.err().setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
-                response.setSuccess(Boolean.TRUE).setResult("定时任务删除完成!");
+                response.ok().setResult("定时任务删除完成!");
             }
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
@@ -111,13 +111,13 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/queryJob")
-    ResponseResult queryJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseResult response = new ResponseResult();
+    ResponseResult<List<QuartzTaskJobBean>> queryJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult<List<QuartzTaskJobBean>> response = new ResponseResult<>();
         try {
             List<QuartzTaskJobBean> quartzTaskJobList = quartzJobService.queryJob(quartzBean);
-            response.setSuccess(Boolean.TRUE).setResult(quartzTaskJobList);
+            response.ok().setResult(quartzTaskJobList);
         } catch (Exception e) {
-            response.setSuccess(false).setErrorMessage(e.getMessage());
+            response.err().setErrorMessage(e.getMessage());
         }
         return response;
     }
