@@ -38,7 +38,7 @@ public class UserInfoApi {
     @ApiOperation("添加用户信息")
     @PostMapping("/add")
     public ResponseResult<Object> addUserInfo(@RequestBody UserInfoBean userInfo) {
-        ResponseResult<Object> response = new ResponseResult();
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             Map<String, Object> flag = userInfoService.insertUserInfo(userInfo);
             if (flag.containsKey(Constant.ERROR_VALUE)) {

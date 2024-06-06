@@ -31,7 +31,7 @@ public class ResponseResult<T> implements Serializable {
      * 请求结果
      */
     @ApiModelProperty("请求结果")
-    private Object result;
+    private T result;
 
     /**
      * 错误信息
@@ -46,12 +46,12 @@ public class ResponseResult<T> implements Serializable {
     private Object extraMessage;
 
     @ApiModelProperty("成功状态")
-    public static ResponseResult<Object> ok() {
-        return new ResponseResult<>().setSuccess(Boolean.TRUE);
+    public ResponseResult<T> ok() {
+        return new ResponseResult<T>().setSuccess(Boolean.TRUE);
     }
 
     @ApiModelProperty("失败状态")
-    public static ResponseResult<Object> err() {
-        return new ResponseResult<>().setSuccess(Boolean.FALSE);
+    public ResponseResult<T> err() {
+        return new ResponseResult<T>().setSuccess(Boolean.FALSE);
     }
 }

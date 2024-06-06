@@ -89,12 +89,12 @@ public class QuartzTaskJobApi {
      * @return
      */
     @PostMapping("/deleteJob")
-    ResponseResult<Map<String, Object>> deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
-        ResponseResult<Map<String, Object>> response = new ResponseResult<>();
+    ResponseResult<Object> deleteJob(@RequestBody QuartzTaskJobBean quartzBean) {
+        ResponseResult<Object> response = new ResponseResult<>();
         try {
             Map<String, Object> objectMap = quartzJobService.deleteJob(quartzBean);
             if (objectMap.containsKey(Constant.ERROR_VALUE)) {
-                response.err().setResult(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
+                response.err().setErrorMessage(String.valueOf(objectMap.get(Constant.ERROR_VALUE)));
             } else {
                 response.ok().setResult("定时任务删除完成!");
             }
