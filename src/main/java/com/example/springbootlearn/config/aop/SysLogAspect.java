@@ -75,7 +75,8 @@ public class SysLogAspect {
         try {
             String params = Arrays.toString(args);
             sysLog.setParams(params);
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
         // 获取request

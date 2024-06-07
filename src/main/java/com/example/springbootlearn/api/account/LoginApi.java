@@ -37,7 +37,7 @@ public class LoginApi {
      * @param accountObject
      * @return
      */
-    @SysLog("获取验证码")
+    @SysLog(value = "获取验证码")
     @ApiOperation("获取验证码")
     @GetMapping("/getVerifyCode")
     ResponseResult<Object> getVerifyCode(@RequestParam Map<String, Object> accountObject) {
@@ -61,7 +61,7 @@ public class LoginApi {
      * @param codeToLogin
      * @return
      */
-    @SysLog("验证码登录")
+    @SysLog(value = "验证码登录")
     @ApiOperation("验证码登录")
     @PostMapping("/codeToLogin")
     public ResponseResult<Map<String, Object>> codeToLogin(@RequestBody Map<String, Object> codeToLogin) {
@@ -85,7 +85,7 @@ public class LoginApi {
      * @param accountToLogin
      * @return
      */
-    @SysLog("密码登录")
+    @SysLog(value = "密码登录")
     @ApiOperation("密码登录")
     @PostMapping("/accountToLogin")
     public ResponseResult<Map<String, Object>> accountToLogin(@RequestBody Map<String, Object> accountToLogin) {
@@ -109,7 +109,7 @@ public class LoginApi {
      * @param signUpParam 注册用户信息
      * @return 结果
      */
-    @SysLog("新用户注册")
+    @SysLog(value = "新用户注册")
     @ApiOperation("新用户注册")
     @PostMapping("/signUp")
     public ResponseResult<Map<String, Object>> signUp(@RequestBody Map<String, Object> signUpParam) {
